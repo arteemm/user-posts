@@ -1,5 +1,11 @@
-import { FETCH_POSTS } from '../constants';
+import { FETCH_POSTS, SET_POSTS } from '../constants';
+import { ReceivedPost } from '../../types';
 
 export const fetchPosts = () => ({
-  type: 'FETCH_POSTS',
+  type: FETCH_POSTS,
+});
+
+export const setPosts = (payload: ReceivedPost[]) => ({
+  type: SET_POSTS,
+  payload,
 });

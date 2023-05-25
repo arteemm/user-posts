@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import userSlice from './reducers/usersSlice';
+import { rootReducer as reducer } from './reducers/rootReducer';
 
 const customizedMiddleware = getDefaultMiddleware({
   serializableCheck: false,
@@ -10,9 +10,7 @@ import rootSaga from './sagas/rootSaga';
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
-  reducer: {
-    users: userSlice,
-  },
+  reducer,
   middleware: () => customizedMiddleware.concat(sagaMiddleware),
   devTools: process.env.NODE_ENV !== 'production',
 });
