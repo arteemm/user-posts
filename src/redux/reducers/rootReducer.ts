@@ -1,6 +1,10 @@
-import { combineReducers } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 import setPosts from './posts';
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
   posts: setPosts,
 });
+
+export type AppState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;

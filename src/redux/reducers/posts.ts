@@ -5,15 +5,16 @@ type Posts = {
   posts: ReceivedPost[];
 };
 
-interface PostsReducer {
-  (state: Posts, {}: { type: string; payload: ReceivedPost[] }): Posts;
+interface PostAction {
+  type: string;
+  payload: ReceivedPost[];
 }
 
 const initialState: Posts = {
-  posts: [],
+  posts: [] as ReceivedPost[],
 };
 
-const setPosts: PostsReducer = (state = initialState, { type, payload }) => {
+const setPosts = (state = initialState, { type, payload }: PostAction) => {
   switch (type) {
     case SET_POSTS:
       return {
