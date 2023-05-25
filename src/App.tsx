@@ -1,21 +1,21 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from './hooks/redux';
-import { fetchPosts } from './redux/actions/actionsCreator';
+import { UserPage, AboutMePage, ErrorPage, PostsPage } from './pages';
+import { Routes, BrowserRouter, Route } from 'react-router-dom';
+import { Layout } from './components';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const user = useAppSelector((store) => store.posts);
-  const dispatch = useAppDispatch();
-  console.log(user);
-
-  const handleClick = () => {
-    dispatch(fetchPosts());
-  };
-
   return (
-    <div className="App">
-      {/* <header className="App-header">{user}</header> */}
-      <button onClick={handleClick}>BUTTON</button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<PostsPage />} />
+          <Route path="/aboutme" element={<AboutMePage />} />
+          <Route path="/user" element={<UserPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
