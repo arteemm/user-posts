@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { PostsList } from '../components';
+import { PostsList, SpinnerWrapper } from '../components';
 import { fetchPosts } from '../redux/actions/actionsCreator';
 import { useDispatch } from 'react-redux';
 
@@ -10,7 +10,11 @@ const PostsPage: React.FC = () => {
     dispatch(fetchPosts());
   }, []);
 
-  return <PostsList />;
+  return (
+    <SpinnerWrapper>
+      <PostsList />
+    </SpinnerWrapper>
+  );
 };
 
 export default PostsPage;

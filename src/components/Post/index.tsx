@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { ReceivedPost } from '../../types';
-import { ReactReduxContextInstance } from 'react-redux/es/components/Context';
 
 const Post: React.FC<ReceivedPost> = (post) => {
   const isLoading = false;

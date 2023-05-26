@@ -5,14 +5,13 @@ import { useAppSelector } from '../../hooks/redux';
 import PaginationPosts from '../Pagination';
 
 const PostsList: React.FC = () => {
-  const { posts } = useAppSelector((store) => store.posts);
-  const { postsError } = useAppSelector((store) => store.errors);
+  const { posts, error } = useAppSelector((store) => store.posts);
   const [page, setPage] = useState(1);
 
-  if (!posts.length && postsError) {
+  if (!posts.length && error) {
     return (
       <Alert variant="danger" className="m-4">
-        {postsError}
+        {error}
       </Alert>
     );
   }

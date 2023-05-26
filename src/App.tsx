@@ -3,6 +3,7 @@ import { UserPage, AboutMePage, ErrorPage, PostsPage } from './pages';
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import { Layout } from './components';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 function App() {
   return (
