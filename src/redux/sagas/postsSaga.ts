@@ -15,8 +15,8 @@ function* handlePosts() {
   }
 }
 
-function* watchingSaga() {
+function* postsSaga() {
   yield takeLatest(FETCH_POSTS, handlePosts);
 }
 
-export default watchingSaga;
+export default postsSaga;

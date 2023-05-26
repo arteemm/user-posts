@@ -5,6 +5,7 @@ const initialState: Posts = {
   pending: false,
   posts: [] as ReceivedPost[],
   error: null,
+  currentPostId: 1,
 };
 
 const setPosts = (state = initialState, action: PostAction): Posts => {

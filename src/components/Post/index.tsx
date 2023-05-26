@@ -1,12 +1,16 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { ReceivedPost } from '../../types';
+import { useDispatch } from 'react-redux';
+import { fetchComments } from '../../redux/actions/actionsCreator';
 
 const Post: React.FC<ReceivedPost> = (post) => {
   const isLoading = false;
+  const dispatch = useDispatch();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(1111);
+    console.log(post.id);
+    dispatch(fetchComments(post.id));
   };
 
   return (
