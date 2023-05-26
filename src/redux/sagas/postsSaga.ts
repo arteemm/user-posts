@@ -1,16 +1,20 @@
-import { ForkEffect, put, call, all, takeLatest, AllEffect } from 'redux-saga/effects';
+import { put, call, takeLatest } from 'redux-saga/effects';
 import { getPosts } from '../../api';
 import { ReceivedPost } from '../../types';
-import { FETCH_POSTS } from '../constants';
+import { FETCH_POSTS, SET_POSTS_ERROR } from '../constants';
 import { setPosts } from '../actions/actionsCreator';
 
-function* workerSaga() {
-  const data: ReceivedPost[] = yield call(getPosts);
-  yield put(setPosts(data));
+function* handlePosts() {
+  try {
+    const data: ReceivedPost[] = yield call(getPosts);
+    yield put(setPosts(data));
+  } catch {
+    yield put({ type: SET_POSTS_ERROR, payload: 'Error fetching post news' });
+  }
 }
 
 function* watchingSaga() {
-  yield all([takeLatest(FETCH_POSTS, workerSaga)]);
+  yield takeLatest(FETCH_POSTS, handlePosts);
 }
 
 export default watchingSaga;

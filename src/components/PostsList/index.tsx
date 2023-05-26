@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Alert } from 'react-bootstrap';
 import Post from '../Post';
 import { useAppSelector } from '../../hooks/redux';
 import PaginationPosts from '../Pagination';
 
 const PostsList: React.FC = () => {
   const { posts } = useAppSelector((store) => store.posts);
+  const { postsError } = useAppSelector((store) => store.errors);
   const [page, setPage] = useState(1);
+
+  if (!posts.length && postsError) {
+    return (
+      <Alert variant="danger" className="m-4">
+        {postsError}
+      </Alert>
+    );
+  }
 
   return (
     <Container className="p-4">
