@@ -1,4 +1,4 @@
-import { SET_POSTS, SET_POSTS_REQUEST, SET_POSTS_ERROR } from '../constants';
+import { SET_POSTS, SET_POSTS_REQUEST, SET_POSTS_ERROR, SET_CURRENT_POST_ID } from '../constants';
 import { ReceivedPost, PostAction, Posts } from '../../types';
 
 const initialState: Posts = {
@@ -27,6 +27,11 @@ const setPosts = (state = initialState, action: PostAction): Posts => {
         pending: false,
         posts: [] as ReceivedPost[],
         error: action.payload,
+      };
+    case SET_CURRENT_POST_ID:
+      return {
+        ...state,
+        currentPostId: action.payload,
       };
     default:
       return state;

@@ -1,9 +1,9 @@
 import { SET_COMMENTS, SET_COMMENTS_ERROR, SET_COMMENTS_REQUEST } from '../constants';
-import { ReceivedComments, CommentsAction, Comments } from '../../types';
+import { CommentsAction, Comments, ReceivedCommentsList } from '../../types';
 
 const initialState: Comments = {
   pending: false,
-  comments: [] as ReceivedComments[],
+  comments: {} as ReceivedCommentsList,
   error: null,
 };
 
@@ -18,13 +18,13 @@ const setComments = (state = initialState, action: CommentsAction): Comments => 
       return {
         ...state,
         pending: false,
-        comments: action.payload,
+        comments: Object.assign(state.comments, { [action.payload[0].postId]: action.payload }),
       };
     case SET_COMMENTS_ERROR:
       return {
         ...state,
         pending: false,
-        comments: [] as ReceivedComments[],
+        comments: {} as ReceivedCommentsList,
         error: action.payload,
       };
     default:

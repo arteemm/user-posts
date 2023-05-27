@@ -5,6 +5,7 @@ import {
   SET_COMMENTS,
   SET_COMMENTS_ERROR,
   SET_COMMENTS_REQUEST,
+  SET_CURRENT_POST_ID,
 } from '../redux/constants';
 
 export type ReceivedPost = {
@@ -14,12 +15,16 @@ export type ReceivedPost = {
   body: string;
 };
 
-export type ReceivedComments = {
+export type ReceivedComment = {
   postId: number;
   id: number;
   name: string;
   email: string;
   body: string;
+};
+
+export type ReceivedCommentsList = {
+  [key: string]: ReceivedComment[];
 };
 
 export type Posts = {
@@ -31,7 +36,7 @@ export type Posts = {
 
 export type Comments = {
   pending: boolean;
-  comments: ReceivedComments[];
+  comments: ReceivedCommentsList;
   error: string | null;
 };
 export interface FetchPostsRequest {
@@ -48,7 +53,16 @@ export type FetchTPostsFailure = {
   payload: string;
 };
 
-export type PostAction = FetchPostsRequest | FetchPostsSuccess | FetchTPostsFailure;
+export type SetCurrentPostIdType = {
+  type: typeof SET_CURRENT_POST_ID;
+  payload: number;
+};
+
+export type PostAction =
+  | FetchPostsRequest
+  | FetchPostsSuccess
+  | FetchTPostsFailure
+  | SetCurrentPostIdType;
 
 export interface FetchCommentsRequest {
   type: typeof SET_COMMENTS_REQUEST;
@@ -56,7 +70,7 @@ export interface FetchCommentsRequest {
 
 export type FetchCommentsSuccess = {
   type: typeof SET_COMMENTS;
-  payload: ReceivedComments[];
+  payload: ReceivedComment[];
 };
 
 export type FetchTCommentsFailure = {

@@ -3,6 +3,7 @@ import {
   SET_POSTS,
   SET_POSTS_ERROR,
   SET_POSTS_REQUEST,
+  SET_CURRENT_POST_ID,
   SET_COMMENTS,
   SET_COMMENTS_ERROR,
   SET_COMMENTS_REQUEST,
@@ -13,10 +14,11 @@ import {
   FetchPostsRequest,
   FetchTPostsFailure,
   FetchPostsSuccess,
-  ReceivedComments,
+  ReceivedComment,
   FetchCommentsRequest,
   FetchCommentsSuccess,
   FetchTCommentsFailure,
+  SetCurrentPostIdType,
 } from '../../types';
 
 export const fetchPosts = () => ({
@@ -37,12 +39,17 @@ export const setPostsFailure = (payload: string): FetchTPostsFailure => ({
   payload,
 });
 
+export const setCurrentPostId = (payload: number): SetCurrentPostIdType => ({
+  type: SET_CURRENT_POST_ID,
+  payload,
+});
+
 export const fetchComments = (idPost: number) => ({
   type: FETCH_COMMENTS,
   idPost,
 });
 
-export const setComments = (payload: ReceivedComments[]): FetchCommentsSuccess => ({
+export const setComments = (payload: ReceivedComment[]): FetchCommentsSuccess => ({
   type: SET_COMMENTS,
   payload,
 });

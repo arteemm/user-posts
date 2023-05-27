@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { ReceivedPost } from '../../types';
 import { useDispatch } from 'react-redux';
-import { fetchComments } from '../../redux/actions/actionsCreator';
+import { fetchComments, setCurrentPostId } from '../../redux/actions/actionsCreator';
+import { useAppSelector } from '../../hooks/redux';
+import CommentsList from '../CommentsList';
 
 const Post: React.FC<ReceivedPost> = (post) => {
-  const isLoading = false;
+  const [click, setClick] = useState(false);
   const dispatch = useDispatch();
+  const { pending, comments } = useAppSelector((store) => store.comments);
+  const { currentPostId } = useAppSelector((store) => store.posts);
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(post.id);
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    dispatch(setCurrentPostId(post.id));
+    setClick(!click);
     dispatch(fetchComments(post.id));
   };
 
   return (
-    <Card style={{ width: '16rem' }} className="m-2">
+    <Card style={{ width: '35rem' }} className="m-2">
       <Card.Img variant="top" src={process.env.PUBLIC_URL + '/images/user.jpg'} />
       <Card.Body>
         <Card.Title>{post.title}</Card.Title>
@@ -22,11 +27,14 @@ const Post: React.FC<ReceivedPost> = (post) => {
         <Button
           className="left"
           variant="outline-info"
-          disabled={isLoading}
-          onClick={!isLoading ? handleClick : undefined}
+          disabled={pending && currentPostId === post.id}
+          onClick={!pending ? handleClick : undefined}
         >
-          {isLoading ? 'Loading…' : 'Click to load'}
+          {pending && currentPostId === post.id ? 'Loading…' : 'Комментарии'}
         </Button>
+        <div>
+          {comments[post.id] ? click ? <CommentsList comments={comments[post.id]} /> : null : null}
+        </div>
       </Card.Body>
     </Card>
   );
