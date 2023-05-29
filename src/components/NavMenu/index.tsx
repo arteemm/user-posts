@@ -21,7 +21,7 @@ const NavMenu: React.FC = () => {
                 <Nav.Link as={Link} to="/aboutme">
                   Обо мне
                 </Nav.Link>
-                <Nav.Link as={Link} to="/user">
+                <Nav.Link as={Link} to="/">
                   Список постов
                 </Nav.Link>
               </div>

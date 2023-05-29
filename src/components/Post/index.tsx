@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, NavLink } from 'react-bootstrap';
 import { ReceivedPost } from '../../types';
 import { useDispatch } from 'react-redux';
 import { fetchComments, setCurrentPostId } from '../../redux/actions/actionsCreator';
 import { useAppSelector } from '../../hooks/redux';
 import CommentsList from '../CommentsList';
+import { Link } from 'react-router-dom';
 
 const Post: React.FC<ReceivedPost> = (post) => {
   const [click, setClick] = useState(false);
@@ -20,7 +21,9 @@ const Post: React.FC<ReceivedPost> = (post) => {
 
   return (
     <Card style={{ width: '35rem' }} className="m-2">
-      <Card.Img variant="top" src={process.env.PUBLIC_URL + '/images/user.jpg'} />
+      <NavLink as={Link} to={`/user/${post.userId}`}>
+        <Card.Img variant="top" src={process.env.PUBLIC_URL + '/images/user.jpg'} />
+      </NavLink>
       <Card.Body>
         <Card.Title>{post.title}</Card.Title>
         <Card.Text>{post.body}</Card.Text>
