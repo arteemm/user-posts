@@ -1,0 +1,21 @@
+.spinner-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.inner-btn {
+  position: absolute;
+  width: 10px;
+  font-weight: 550;
+  border: none;
+  background-color: transparent;
+  line-height: 35px;
+  left: calc(100% - 30px);
+  z-index: 99999;
+}
+
+.inner-btn:hover {
+  color: blue;
+}
