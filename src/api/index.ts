@@ -12,6 +12,6 @@ export const getComments: (idPost: number) => Promise<ReceivedComment> = async (
 };
 
 export const getUser: (userId: number) => Promise<ReceivedUser> = async (userId) => {
-  const request = await instance.get(`/user/${userId}`);
+  const request = await instance.get(`/users/${userId}`);
   return request.data;
 };

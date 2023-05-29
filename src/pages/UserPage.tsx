@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import { useAppSelector } from '../hooks/redux';
 import { fetchUser } from '../redux/actions/actionsCreator';
 import { useDispatch } from 'react-redux';
-import { SpinnerWrapper } from '../components';
+import { SpinnerWrapper, UserTemplate } from '../components';
 
 const UserPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,7 +17,7 @@ const UserPage: React.FC = () => {
 
   return (
     <SpinnerWrapper>
-      <p className="h2">Информация о пользователе</p>
+      <UserTemplate />
     </SpinnerWrapper>
   );
 };
