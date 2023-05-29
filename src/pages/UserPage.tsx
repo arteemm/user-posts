@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import { fetchUser } from '../redux/actions/actionsCreator';
 import { useDispatch } from 'react-redux';
 import { SpinnerWrapper, UserTemplate } from '../components';
+import { useAppSelector } from '../hooks/redux';
 
 const UserPage: React.FC = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const userId = params.id;
+  const { user } = useAppSelector((store) => store.user);
 
   useEffect(() => {
     if (userId) {
@@ -15,11 +17,7 @@ const UserPage: React.FC = () => {
     }
   }, []);
 
-  return (
-    <SpinnerWrapper>
-      <UserTemplate />
-    </SpinnerWrapper>
-  );
+  return <SpinnerWrapper>{user.id ? <UserTemplate /> : null} </SpinnerWrapper>;
 };
 
 export default UserPage;
