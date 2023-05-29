@@ -1,24 +1,25 @@
-import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import NavMenu from '../NavMenu';
+import SortMenu from '../SortMenu';
+import { useLocation, Link } from 'react-router-dom';
+import { NavLink } from 'react-bootstrap';
 
 const Header: React.FC = () => {
+  const location = useLocation();
+  const [selectValue, setSelectValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+
   return (
-    <Navbar bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          Posts page
-        </Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link as={Link} to="/aboutme">
-            about me
-          </Nav.Link>
-          <Nav.Link as={Link} to="/user">
-            User
-          </Nav.Link>
-        </Nav>
-      </Container>
-    </Navbar>
+    <header className="p-2 bg-light d-flex align-items-center justify-content-between">
+      <NavMenu />
+      {location.pathname === '/' ? (
+        <SortMenu {...{ searchValue, setSearchValue, selectValue, setSelectValue }} />
+      ) : (
+        <NavLink className="me-5" as={Link} to="/">
+          Назад
+        </NavLink>
+      )}
+    </header>
   );
 };
 

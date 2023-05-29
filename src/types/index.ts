@@ -6,6 +6,7 @@ import {
   SET_COMMENTS_ERROR,
   SET_COMMENTS_REQUEST,
   SET_CURRENT_POST_ID,
+  SET_CURRENT_POSTS,
 } from '../redux/constants';
 
 export type ReceivedPost = {
@@ -32,6 +33,7 @@ export type Posts = {
   posts: ReceivedPost[];
   error: string | null;
   currentPostId: number;
+  currentPosts: ReceivedPost[];
 };
 
 export type Comments = {
@@ -58,11 +60,17 @@ export type SetCurrentPostIdType = {
   payload: number;
 };
 
+export type SortCurrentPostsType = {
+  type: typeof SET_CURRENT_POSTS;
+  payload: ReceivedPost[];
+};
+
 export type PostAction =
   | FetchPostsRequest
   | FetchPostsSuccess
   | FetchTPostsFailure
-  | SetCurrentPostIdType;
+  | SetCurrentPostIdType
+  | SortCurrentPostsType;
 
 export interface FetchCommentsRequest {
   type: typeof SET_COMMENTS_REQUEST;

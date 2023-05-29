@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pagination } from 'react-bootstrap';
+import { useAppSelector } from '../../hooks/redux';
 
 type PaginationType = {
   activePage: number;
@@ -7,9 +8,11 @@ type PaginationType = {
 };
 
 const PaginationPosts: React.FC<PaginationType> = (props) => {
+  const { currentPosts } = useAppSelector((store) => store.posts);
+
   return (
     <Pagination>
-      {Array.from({ length: 10 }).map((_, index) => {
+      {Array.from({ length: Math.ceil(currentPosts.length / 10) || 1 }).map((_, index) => {
         const number = index + 1;
         return (
           <Pagination.Item

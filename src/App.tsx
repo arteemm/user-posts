@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { UserPage, AboutMePage, ErrorPage, PostsPage } from './pages';
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import { Layout } from './components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import { fetchPosts } from './redux/actions/actionsCreator';
+import { useDispatch } from 'react-redux';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
