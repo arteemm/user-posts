@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<PostsPage />} />
           <Route path="/aboutme" element={<AboutMePage />} />
-          <Route path="/user:id" element={<UserPage />} />
+          <Route path="/user/:id" element={<UserPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>

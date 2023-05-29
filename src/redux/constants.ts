@@ -9,3 +9,8 @@ export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const SET_COMMENTS = 'SET_COMMENTS';
 export const SET_COMMENTS_ERROR = 'SET_COMMENTS_ERROR';
 export const SET_COMMENTS_REQUEST = 'SET_COMMENTS_REQUEST';
+
+export const FETCH_USER = 'FETCH_USER';
+export const SET_USER = 'SET_USER';
+export const SET_USER_ERROR = 'SET_USER_ERROR';
+export const SET_USER_REQUEST = 'SET_USER_REQUEST';

@@ -9,18 +9,26 @@ import {
   SET_COMMENTS_REQUEST,
   FETCH_COMMENTS,
   SET_CURRENT_POSTS,
+  SET_USER,
+  SET_USER_ERROR,
+  SET_USER_REQUEST,
+  FETCH_USER,
 } from '../constants';
 import {
   ReceivedPost,
   FetchPostsRequest,
-  FetchTPostsFailure,
+  FetchPostsFailure,
   FetchPostsSuccess,
   ReceivedComment,
   FetchCommentsRequest,
   FetchCommentsSuccess,
-  FetchTCommentsFailure,
+  FetchCommentsFailure,
   SetCurrentPostIdType,
   SortCurrentPostsType,
+  ReceivedUser,
+  FetchUserFailure,
+  FetchUserRequest,
+  FetchUserSuccess,
 } from '../../types';
 
 export const fetchPosts = () => ({
@@ -36,7 +44,7 @@ export const setPostsRequest = (): FetchPostsRequest => ({
   type: SET_POSTS_REQUEST,
 });
 
-export const setPostsFailure = (payload: string): FetchTPostsFailure => ({
+export const setPostsFailure = (payload: string): FetchPostsFailure => ({
   type: SET_POSTS_ERROR,
   payload,
 });
@@ -65,7 +73,26 @@ export const setCommentsRequest = (): FetchCommentsRequest => ({
   type: SET_COMMENTS_REQUEST,
 });
 
-export const setCommentsFailure = (payload: string): FetchTCommentsFailure => ({
+export const setCommentsFailure = (payload: string): FetchCommentsFailure => ({
   type: SET_COMMENTS_ERROR,
+  payload,
+});
+
+export const fetchUser = (userId: number) => ({
+  type: FETCH_USER,
+  userId,
+});
+
+export const setUser = (payload: ReceivedUser): FetchUserSuccess => ({
+  type: SET_USER,
+  payload,
+});
+
+export const setUserRequest = (): FetchUserRequest => ({
+  type: SET_USER_REQUEST,
+});
+
+export const setUserFailure = (payload: string): FetchUserFailure => ({
+  type: SET_USER_ERROR,
   payload,
 });

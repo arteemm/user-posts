@@ -7,6 +7,9 @@ import {
   SET_COMMENTS_REQUEST,
   SET_CURRENT_POST_ID,
   SET_CURRENT_POSTS,
+  SET_USER,
+  SET_USER_ERROR,
+  SET_USER_REQUEST,
 } from '../redux/constants';
 
 export type ReceivedPost = {
@@ -50,7 +53,7 @@ export type FetchPostsSuccess = {
   payload: ReceivedPost[];
 };
 
-export type FetchTPostsFailure = {
+export type FetchPostsFailure = {
   type: typeof SET_POSTS_ERROR;
   payload: string;
 };
@@ -68,7 +71,7 @@ export type SortCurrentPostsType = {
 export type PostAction =
   | FetchPostsRequest
   | FetchPostsSuccess
-  | FetchTPostsFailure
+  | FetchPostsFailure
   | SetCurrentPostIdType
   | SortCurrentPostsType;
 
@@ -81,9 +84,54 @@ export type FetchCommentsSuccess = {
   payload: ReceivedComment[];
 };
 
-export type FetchTCommentsFailure = {
+export type FetchCommentsFailure = {
   type: typeof SET_COMMENTS_ERROR;
   payload: string;
 };
 
-export type CommentsAction = FetchCommentsRequest | FetchCommentsSuccess | FetchTCommentsFailure;
+export type CommentsAction = FetchCommentsRequest | FetchCommentsSuccess | FetchCommentsFailure;
+
+export type ReceivedUser = {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+};
+
+export type User = {
+  pending: boolean;
+  user: ReceivedUser;
+  error: string | null;
+};
+export interface FetchUserRequest {
+  type: typeof SET_USER_REQUEST;
+}
+
+export type FetchUserSuccess = {
+  type: typeof SET_USER;
+  payload: ReceivedUser;
+};
+
+export type FetchUserFailure = {
+  type: typeof SET_USER_ERROR;
+  payload: string;
+};
+
+export type UserAction = FetchUserRequest | FetchUserSuccess | FetchUserFailure;
