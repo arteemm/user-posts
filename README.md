@@ -2,13 +2,13 @@
 
 ## Ключевые технологии, которые были использованы использовать
 
-*React
-*React-bootstrap
-*React-router
-*Axios
-*Redux
-*Redux-saga
-*Git
+* React
+* React-bootstrap
+* React-router
+* Axios
+* Redux
+* Redux-saga
+* Git
 
  Вся логика работы с сервером вынесена в saga-эффекты.
  
